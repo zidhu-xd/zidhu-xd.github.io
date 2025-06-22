@@ -8,6 +8,7 @@
   💻 I’m a curious mind exploring code, design, and digital vibes. <br>
   🌱 Currently learning: full-stack development and creative UI/UX. <br>
   📷 Capturing moments, one post at a time.  
+<p align="center"> <a href="https://instagram.com/zidhuxd" target="_blank"> <img src="https://img.shields.io/badge/Instagram-%23E4405F.svg?&style=for-the-badge&logo=instagram&logoColor=white" alt="Instagram"/> </a> </p>
 </p>
 
 ---
