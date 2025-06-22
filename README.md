@@ -6,8 +6,7 @@
 
 <p align="center">
   💻 I’m a curious mind exploring code, design, and digital vibes. <br>
-  🌱 Failed a lot but even the small wins keep me going. <br>
-  📷 Learning something new every day.  
+  📷 Learning something new every day.<br>  
 </p>
 
 <p align="center">
