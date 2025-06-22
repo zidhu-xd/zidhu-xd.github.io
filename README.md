@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./city-lofi.gif" alt="city lofi banner" width="100%"/>
+  <img src="./tenorx.gif" alt="city lofi banner" width="100%"/>
 </p>
 
 <h1 align="center">Hi, I'm Zidhu 👋</h1>
