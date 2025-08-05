@@ -8,39 +8,7 @@ body {
   margin: 0;
 }
 
-/* --- Loading Text Typing Animation --- */
-.loading-text {
-    font-size: 1.2em;
-    font-weight: bold; /* Make the text bold */
-    opacity: 0.8;
-    white-space: nowrap; /* Prevent text from wrapping */
-    overflow: hidden; /* Hide overflow content */
-    width: 0; /* Start with zero width */
-    animation: 
-        typing-effect 2s steps(22, end) forwards, /* Typing animation */
-        blink-caret 0.75s step-end infinite; /* Blinking caret effect */
-    animation-delay: 0.5s; /* Delay before typing starts */
-}
 
-/* Keyframes for the typing effect */
-@keyframes typing-effect {
-    from { width: 0 }
-    to { width: 100% } /* Expand width to reveal text */
-}
-
-/* Keyframes for the blinking caret */
-@keyframes blink-caret {
-    from, to { border-color: transparent }
-    50% { border-color: white; } /* Blinking white caret (adjust color if needed) */
-}
-/* Add a pseudo-element for the caret */
-.loading-text::after {
-    content: '|'; /* The caret character */
-    border-right: 0.15em solid white; /* Styling for the caret */
-    font-weight: normal; /* Keep caret normal weight if text is bold */
-    animation: blink-caret 0.75s step-end infinite;
-}
-/* --- End Loading Text Typing Animation --- */
 article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
   display: block;
 }
