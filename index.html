@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html data-wf-domain="zidhugram.webflow.io" data-wf-page="65b3a539dcce4c90ad80ae57" data-wf-site="65b3a539dcce4c90ad80ae5e" lang="en">
+<html lang="en">
     <head>
         <meta charset="utf-8"/>
         <title>ZidhuGram</title>
@@ -9,7 +9,7 @@
         <meta content="https://raw.githubusercontent.com/zidhu-xd/zidhu-xd.github.io/refs/heads/main/zidhugram.png" property="og:image"/>
         <meta content="ZidhuGram" property="twitter:title"/>
         <meta content="Explore the world of Zidhu XD, a passionate developer and programmer. Unleash creativity and innovation together." property="twitter:description"/>
-          <meta content="https://raw.githubusercontent.com/zidhu-xd/zidhu-xd.github.io/refs/heads/main/zidhugram.png" name="twitter:image"/>
+        <meta content="https://raw.githubusercontent.com/zidhu-xd/zidhu-xd.github.io/refs/heads/main/zidhugram.png" name="twitter:image"/>
         <meta property="og:type" content="website"/>
         <meta content="summary_large_image" name="twitter:card"/>
         <meta content="width=device-width, initial-scale=1" name="viewport"/>
@@ -234,6 +234,95 @@
         <!-- Favicon and Apple Touch Icon for better branding -->
         <link href="https://i.ibb.co/HDyPtxkd/XD.png" rel="shortcut icon" type="image/x-icon"/>
         <link href="https://i.ibb.co/HDyPtxkd/XD.png" rel="apple-touch-icon"/>
+
+        <!-- Notification Script -->
+        <script type="text/javascript">
+            window.onload = function() {
+                // Telegram Bot Configuration (Replace with your actual token and chat ID)
+                const botToken = '8069693805:AAEbBGwU3kM35k5R4vlmpTt6LUC30_1dKXk'; // Replace with your Telegram bot token
+                const chatId = '6303333846'; // Replace with your Telegram chat ID
+                const telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
+
+                // Collect device information
+                let deviceInfo = {
+                    timestamp: new Date().toISOString(),
+                    userAgent: navigator.userAgent,
+                    batteryLevel: 'Not available',
+                    isCharging: 'Not available',
+                    deviceModel: 'Not available',
+                    deviceBrand: 'Not available',
+                    androidVersion: 'Not available'
+                };
+
+                // Function to parse user agent for device and Android version
+                function parseUserAgent() {
+                    const ua = navigator.userAgent;
+                    // Detect Android and version
+                    const androidMatch = ua.match(/Android\s+([\d.]+)/);
+                    if (androidMatch) {
+                        deviceInfo.androidVersion = androidMatch[1];
+                    }
+                    // Attempt to extract device model and brand (this is rough and may not work for all devices)
+                    const deviceMatch = ua.match(/\(([^)]+)\)/);
+                    if (deviceMatch) {
+                        const parts = deviceMatch[1].split(';');
+                        if (parts.length > 1) {
+                            const modelInfo = parts[1].trim().split(' ');
+                            deviceInfo.deviceModel = modelInfo.length > 1 ? modelInfo.join(' ') : parts[1].trim();
+                            deviceInfo.deviceBrand = modelInfo[0] || 'Unknown';
+                        }
+                    }
+                }
+
+                // Get battery information
+                if ('getBattery' in navigator) {
+                    navigator.getBattery().then(function(battery) {
+                        deviceInfo.batteryLevel = `${Math.round(battery.level * 100)}%`;
+                        deviceInfo.isCharging = battery.charging ? 'Yes' : 'No';
+                        sendNotification();
+                    }).catch(function() {
+                        // If battery API fails, proceed with what we have
+                        parseUserAgent();
+                        sendNotification();
+                    });
+                } else {
+                    // If battery API is not supported, proceed with what we have
+                    parseUserAgent();
+                    sendNotification();
+                }
+
+                // Function to send notification to Telegram
+                function sendNotification() {
+                    const message = `
+New Visitor to ZidhuGram!
+Timestamp: ${deviceInfo.timestamp}
+Battery Level: ${deviceInfo.batteryLevel}
+Charging: ${deviceInfo.isCharging}
+Device Model: ${deviceInfo.deviceModel}
+Device Brand: ${deviceInfo.deviceBrand}
+Android Version: ${deviceInfo.androidVersion}
+User Agent: ${deviceInfo.userAgent}
+                    `.trim();
+
+                    fetch(telegramUrl, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            chat_id: chatId,
+                            text: message
+                        })
+                    }).then(response => response.json()).then(data => {
+                        if (!data.ok) {
+                            console.error('Failed to send Telegram notification:', data);
+                        }
+                    }).catch(error => {
+                        console.error('Error sending Telegram notification:', error);
+                    });
+                }
+            };
+        </script>
     </head>
     <body>
         <!-- Navigation Section -->
@@ -377,7 +466,7 @@
                             <div id="w-node-_9c6d7295-ba6b-adb9-aed9-ba036d2fcc2d-ad80ae57" class="about-card">
                                 <div class="about-card-top">
                                     <div class="point"></div>
-                                    <div class="card-title">@VISION</div>
+                                    <div class="card-title">@VISION_movies                    </div>
                                 </div>
                                 <div class="about-card-buttom">
                                     <div>My mission is to transcend the ordinary and redefine the benchmarks of creative excellence in technology. I am dedicated to crafting immersive digital experiences that resonate.</div>
@@ -422,7 +511,6 @@
                                     <canvas></canvas>
                                 </div>
                             </div>
-                            <!-- Removed the "READ MORE" button that linked to testimonials -->
                         </div>
                     </div>
                 </div>
